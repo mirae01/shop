@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC 
+ "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN" 
+ "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<package name="member" extends="struts-default">
+		<!-- 로그인 -->
+		<action name="LoginActionForm">
+			<result name="success" type="redirect">/jsp/member/login.jsp</result>
+		</action>
+		<!-- 이곳에 나머지 로그인 관련 액션 추가 -->
+		<!-- 계속해서 다른 액션들도 추가 -->
+		<action name="RegActionForm">
+			<result name="success" type="redirect">/jsp/member/regForm.jsp</result>
+		</action>
+		<action name="IDCheckAction" class="member.action.IDCheckAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validation" />
+			<interceptor-ref name="workflow" />
+			<result name="input" type="dispatcher">/jsp/member/idCheck.jsp</result>
+			<result name="error" type="dispatcher">/jsp/member/idCheck.jsp</result>
+			<result name="success" type="dispatcher">/jsp/member/idCheck.jsp</result>
+		</action>
+		<action name="ZipcodeAction" class="member.action.ZipcodeAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validation" />
+			<interceptor-ref name="workflow" />
+			<result name="input" type="dispatcher">/jsp/member/zipCheck.jsp</result>
+			<result name="success" type="dispatcher">/jsp/member/zipCheck.jsp</result>
+		</action>
+		<action name="RegValidationAction" class="member.action.ValidationAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modelDriven" />
+			<interceptor-ref name="params" />
+			<interceptor-ref name="validation" />
+			<interceptor-ref name="workflow" />
+			<result name="input" type="dispatcher">/jsp/member/regForm.jsp</result>
+			<result name="success" type="chain">
+				<param name="actionName">RegAction</param>
+			</result>
+		</action>
+		<action name="RegAction" class="member.action.RegAction">
+			<interceptor-ref name="prepare" />
+			<interceptor-ref name="modeDriven" />
+			<interceptor-ref name="chain" />
+			<interceptor-ref name="params" />
+			<result name="error" type="dispatcher">/jsp/member/regForm.jsp</result>
+			<result name="success" type="dispatcher">/jsp/memer/login.jsp</result>
+		</action>
+	</package>
+</struts>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
